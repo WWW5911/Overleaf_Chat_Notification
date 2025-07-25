@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Overleaf 訊息監控器",
-  "version": "1.4",
+  "version": "1.0",
   "description": "監控網頁新訊息並發送email通知",
   "permissions": [
     "activeTab",

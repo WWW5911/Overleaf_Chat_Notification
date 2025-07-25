@@ -46,8 +46,8 @@ A powerful Chrome extension for monitoring new messages on web pages and sending
 
 1. **下載擴充功能**
    ```bash
-   git clone [repository-url]
-   cd message-monitor-extension
+   git clone https://github.com/WWW5911/Overleaf_Chat_Notification.git
+   cd Overleaf_Chat_Notification
    ```
 
 2. **開啟 Chrome 擴充功能頁面**
@@ -124,7 +124,7 @@ A powerful Chrome extension for monitoring new messages on web pages and sending
 
 ### 檔案結構 / File Structure
 ```
-message-monitor-extension/
+Overleaf_Chat_Notification/
 ├── manifest.json              # 擴充功能配置 / Extension manifest
 ├── background.js              # 背景腳本 / Background script
 ├── content.js                 # 內容腳本 / Content script
@@ -248,36 +248,6 @@ localStorage.setItem('messageMonitorDebug', 'true');
 
 ## 📝 更新日誌 / Changelog
 
-### v1.4.0 (2025-01-26)
-- ✨ 新增多語言支援 (中文/英文)
-- ✨ Added multi-language support (Chinese/English)
-- 🎯 新增 Overleaf 專用快速設定
-- 🎯 Added Overleaf-specific quick settings
-- 🔧 改進訊息去重機制
-- 🔧 Improved message deduplication mechanism
-- 🌐 支援域名和完整網址監控
-- 🌐 Support for domain and full URL monitoring
-
-### v1.3.0
-- 🔔 新增 Email 通知功能
-- 🔔 Added email notification feature
-- ⚙️ 改進設定介面
-- ⚙️ Improved settings interface
-- 🐛 修復重複通知問題
-- 🐛 Fixed duplicate notification issues
-
-### v1.2.0
-- 🎨 新增網址管理功能
-- 🎨 Added URL management features
-- 🔧 優化監控效能
-- 🔧 Optimized monitoring performance
-
-### v1.1.0
-- 🆕 新增自己訊息通知控制
-- 🆕 Added own message notification control
-- 🔄 改進通知合併邏輯
-- 🔄 Improved notification merging logic
-
 ### v1.0.0
 - 🎉 初始版本發布
 - 🎉 Initial release
@@ -301,24 +271,6 @@ Issues and Pull Requests are welcome!
 MIT License - 詳見 LICENSE 檔案
 MIT License - See LICENSE file for details
 
-## 🙏 致謝 / Acknowledgments
-
-- [EmailJS](https://www.emailjs.com/) - Email 服務提供 / Email service provider
-- [Chrome Extensions API](https://developer.chrome.com/docs/extensions/) - 開發文件 / Development documentation
-- 所有測試用戶的寶貴回饋 / Valuable feedback from all beta testers
-
----
-
-## 📞 支援 / Support
-
-如有問題或建議，請：
-For questions or suggestions, please:
-
-- 📧 發送 Email / Send email: [your-email@example.com]
-- 🐛 提交 Issue / Submit issue: [GitHub Issues URL]
-- 💬 加入討論 / Join discussion: [Discord/Telegram URL]
-
----
 
 **享受無干擾的訊息監控體驗！**
 **Enjoy distraction-free message monitoring!**
