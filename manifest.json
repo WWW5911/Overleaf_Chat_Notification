@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Overleaf 訊息監控器",
+  "version": "1.4",
+  "description": "監控網頁新訊息並發送email通知",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "訊息監控設定"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "languages/*.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

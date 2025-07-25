@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 350px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .section {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .section h3 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 3px;
+      display: none;
+    }
+
+    .status.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .status.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 data-i18n="title">訊息監控設定</h2>
+
+  <div class="section">
+    <h3 data-i18n="language_settings">語言設定</h3>
+    <label data-i18n="select_language" for="languageSelect">選擇語言:</label>
+    <select id="languageSelect" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 3px;">
+      <option value="zh-TW" data-i18n="chinese">中文</option>
+      <option value="en-US" data-i18n="english">English</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <h3 data-i18n="notification_settings">通知設定</h3>
+    <div id="notificationStatus" class="status"></div>
+    <label>
+      <input type="checkbox" id="enableNotifications"> <span data-i18n="enable_notifications">啟用通知</span>
+    </label>
+    <label>
+      <input type="checkbox" id="enableEmail"> <span data-i18n="enable_email_notifications">啟用Email通知</span>
+    </label>
+    <label>
+      <input type="checkbox" id="notifyOwnMessages"> <span data-i18n="notify_own_messages">通知自己發送的訊息</span>
+    </label>
+    <label for="emailAddress" data-i18n="email_address">Email地址:</label>
+    <input type="email" id="emailAddress" data-i18n="email_address" placeholder="your@email.com">
+
+    <button id="saveNotificationSettings" style="margin-top: 10px; background-color: #28a745;" data-i18n="save_notification_settings">
+      儲存通知設定
+    </button>
+  </div>
+
+  <div class="section">
+    <h3 data-i18n="url_monitoring_settings">網址監控設定</h3>
+    <div id="urlStatus" class="status"></div>
+    
+    <div style="margin-bottom: 15px; padding: 10px; background-color: #f8f9fa; border-radius: 5px; border-left: 4px solid #28a745;">
+      <label>
+        <input type="checkbox" id="enableOverleaf" checked> 
+        <strong data-i18n="enable_overleaf_monitoring">啟用 Overleaf 監控</strong> (www.overleaf.com)
+      </label>
+      <div style="font-size: 11px; color: #666; margin-top: 5px; margin-left: 20px;" data-i18n="overleaf_description">
+        快速啟用對 Overleaf 的訊息監控，預設開啟
+      </div>
+    </div>
+    
+    <div style="margin-bottom: 10px;">
+      <label style="font-weight: bold;" data-i18n="monitoring_scope">監控範圍:</label>
+      <div style="margin-left: 20px;">
+        <label>
+          <input type="radio" name="urlType" id="urlTypeDomain" value="domain" checked>
+          <span data-i18n="entire_domain">整個域名</span> (<span data-i18n="entire_domain_example">例: example.com</span>)
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="urlType" id="urlTypeFullUrl" value="fullUrl">
+          <span data-i18n="full_url">完整網址</span> (<span data-i18n="full_url_example">例: example.com/page</span>)
+        </label>
+      </div>
+    </div>
+
+    <label>
+      <input type="checkbox" id="enableCurrentSite"> <span data-i18n="monitor_current_site">監控目前網站</span>
+    </label>
+    <div id="currentSiteInfo" style="font-size: 12px; color: #666; margin-bottom: 10px;">
+      <div><span data-i18n="domain">域名</span>: <span id="currentSiteDomain" data-i18n="loading">載入中...</span></div>
+      <div><span data-i18n="full_url_text">完整網址</span>: <span id="currentSiteFullUrl" data-i18n="loading">載入中...</span></div>
+      <div style="margin-top: 5px; font-weight: bold;"><span data-i18n="will_save">將儲存</span>: <span id="willSaveAs" data-i18n="loading">載入中...</span></div>
+    </div>
+
+    <h4 style="margin-top: 15px; margin-bottom: 10px;" data-i18n="enabled_monitoring_urls">已啟用監控的網址:</h4>
+    <div id="enabledSitesList"
+      style="max-height: 150px; overflow-y: auto; border: 1px solid #ddd; padding: 5px; border-radius: 3px;">
+      <div style="color: #999; text-align: center; padding: 20px;" data-i18n="loading">載入中...</div>
+    </div>
+
+    <button id="clearAllSites" style="margin-top: 10px; background-color: #dc3545; width: 100%;" data-i18n="clear_all_sites">
+      清除所有監控網址
+    </button>
+  </div>
+
+  <div class="section">
+    <h3 data-i18n="emailjs_settings">EmailJS設定</h3>
+    <div id="emailStatus" class="status"></div>
+    <p style="font-size: 12px; color: #666;" data-i18n="emailjs_description">
+      請先到 <a href="https://www.emailjs.com/" target="_blank">EmailJS</a> 註冊並設定服務
+    </p>
+    <label for="serviceId" data-i18n="service_id">Service ID:</label>
+    <input type="text" id="serviceId" placeholder="service_xxxxxxx">
+
+    <label for="templateId" data-i18n="template_id">Template ID:</label>
+    <input type="text" id="templateId" placeholder="template_xxxxxxx">
+
+    <label for="publicKey" data-i18n="public_key">Public Key:</label>
+    <input type="text" id="publicKey" placeholder="your_public_key">
+
+    <button id="saveEmailSettings" style="margin-top: 10px; background-color: #17a2b8;" data-i18n="save_emailjs_settings">
+      儲存EmailJS設定
+    </button>
+  </div>
+
+  <script src="languages/language-manager.js"></script>
+  <script src="popup.js"></script>
+</body>
+
+</html>
