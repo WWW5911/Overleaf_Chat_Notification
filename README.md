@@ -1,8 +1,8 @@
-# 訊息監控器 / Message Monitor
+# Overleaf 訊息監控器 / Overleaf Chat Monitor
 
-一個功能強大的 Chrome 擴充功能，用於監控網頁上的新訊息並發送即時通知。
+一個功能強大的 Chrome 擴充功能，用於監控 Overleaf 上的新訊息並發送即時通知。
 
-A powerful Chrome extension for monitoring new messages on web pages and sending real-time notifications.
+A powerful Chrome extension for monitoring new messages on Overleaf chat and sending real-time notifications.
 
 ## 🌟 功能特色 / Features
 
